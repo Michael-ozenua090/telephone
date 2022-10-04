@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+</head>
+
+<body>
+    <h2><a href="{% url 'insert' %}">Click to add</a></h2>
+    <table border="2">
+        <tr>
+            <th>SN</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Other Name</th>
+            <th>Tel</th>
+            <th>Action</th>
+        </tr>
+
+        {% for directory in contact %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ directory.first_name }}</td>
+            <td>{{ directory.last_name }}</td>
+            <td>{{ directory.other_name }}</td>
+            <td>{{ directory.tel }}</td>
+            <td>
+                <a href="{% url 'remove' directory.id %}"
+                    onclick="return confirm('Do you really wanna delete ?')">Delete</a>
+
+                -
+                <a href="{% url 'amend' directory.id %}">Update</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+   
+
+</body>
+
+</html>
